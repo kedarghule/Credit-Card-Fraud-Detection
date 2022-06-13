@@ -58,4 +58,19 @@ The model is trained again on these parameters and we use the validation and tes
 
 ## XGBoost Classifier
 
-To increase our average precision-recall score (Area Under the Precision-Recall Curve), XGBoost is considered for better predictive capability.
+To increase our average precision-recall score (Area Under the Precision-Recall Curve), XGBoost is considered for better predictive capability. We followed the following steps in this process:
+- **Hyperparameter tuning using Hyperopt:**  Hyperopt is a powerful Python library that can optimize a function's value over complex spaces of input i.e., it can optimize a model's accuracy over a space of hyperparameters. It’s a Bayesian optimizer, meaning it is not merely randomly searching or searching a grid, but intelligently learning which combinations of values work well as it goes, and focusing the search there. It is supported by a SMBO methodology adapted to work with different algorithms such as: Tree of Parzen Estimators (TPE), Adaptive Tree of Parzen Estimators (ATPE) and Gaussian Processes (GP).
+
+- **Training the Model:** The model is trained with the optimal parameters we got using Hyperopt for our XGBoost classifier.
+
+**Observations:**
+
+![image](https://user-images.githubusercontent.com/41315903/173432119-23cc9045-e3f2-47b0-889c-3ed4590ebf39.png)
+
+![image](https://user-images.githubusercontent.com/41315903/173432735-7cc393e1-0ee3-49b1-9a5a-ffbd67b5cb33.png)
+
+As we can see, there is a significant increase in our main evaluation metric i.e., the AUPRC score which is 0.82 on the test data for the XGBoost Classifier.
+
+Below is the Precision-Recall Curve for our model:
+
+![image](https://user-images.githubusercontent.com/41315903/173433502-995b0f42-fc6f-4a62-b1b3-da1ccc336ff6.png)

@@ -2,7 +2,7 @@
 
 ## Problem Statement
 
-Fraud detection find a number of applications in multiple industries. For credit card companies, it is important to be able to recognize fraudulent credit card transactions so that customers are not charged for items that they did not purchase. The problem statement is to detect fraudulent transactions using supervised machine learning techniques on this classification problem.
+Fraud detection finds a number of applications in multiple industries. For credit card companies, it is important to be able to recognize fraudulent credit card transactions so that customers are not charged for items that they did not purchase. The problem statement is to detect fraudulent transactions using supervised machine learning techniques on this classification problem.
 
 ## Dataset
 
@@ -43,7 +43,12 @@ It contains only numerical input variables which are the result of a PCA transfo
 
 ## Logistic Regression
 
-We start off by using Logistic Regression as our baseline model. To find the optimal hyperparameters `penalty` and `C`, we perform grid search CV with 10-fold cross validation. Our best parameters for the model were observed to be:  {'C': 10, 'penalty': 'l2'}. 
+We start off by using Logistic Regression as our baseline model. To find the optimal hyperparameters `penalty` and `C`, we perform grid search CV with 10-fold cross validation. 
+
+- `C` parameter is the regularization parameter for Logistic Regression. Regularization generally refers the concept that there should be a complexity penalty for more extreme parameters. The idea is that just looking at the training data and not paying attention to how extreme one's parameters are leads to overfitting. A high value of C tells the model to give high weight to the training data, and a lower weight to the complexity penalty. A low value tells the model to give more weight to this complexity penalty at the expense of fitting to the training data.
+- `penalty` parameter is used to specify the norm of the penalty.
+
+Our best parameters for the model were observed to be:  {'C': 10, 'penalty': 'l2'}. 
 The model is trained again on these parameters and we use the validation and test data to evaluate the model.
 
 **Observations:**
@@ -52,6 +57,9 @@ The model is trained again on these parameters and we use the validation and tes
 
 ![image](https://user-images.githubusercontent.com/41315903/173409326-38a01000-3359-4512-9e58-57c2a6fb67b0.png)
 
+Below is the Precision-Recall Curve for Logistic Regression:
+
+![image](https://user-images.githubusercontent.com/41315903/173441420-788d8ba4-f2c5-4ce0-9e77-1eef1f826667.png)
 
 **The dataset description mentions that given the class imbalance ratio, we it is recommended to evaluate the model using the Area Under the Precision-Recall Curve (AUPRC). Using Logistic Regression, we get AUPRC score of 0.70 on the test data. This can be improved** and hence we look at XGBoost.
 

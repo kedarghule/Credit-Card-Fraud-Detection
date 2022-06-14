@@ -10,7 +10,7 @@ The dataset used for this project can be found at this [link](https://www.kaggle
 
 The dataset contains transactions made by credit cards in September 2013 by European cardholders. This dataset presents transactions that occurred in two days, where we have 492 frauds out of 284,807 transactions. The dataset is highly unbalanced, the positive class (frauds) account for 0.172% of all transactions.
 
-It contains only numerical input variables which are the result of a PCA transformation. Unfortunately, due to confidentiality issues, the data for the original features and more background information about the data cannot be provided. Features V1, V2, … V28 are the principal components obtained with PCA, the only features which have not been transformed with PCA are 'Time' and 'Amount'. Feature 'Time' contains the seconds elapsed between each transaction and the first transaction in the dataset. The feature 'Amount' is the transaction Amount, this feature can be used for example-dependant cost-sensitive learning. Feature 'Class' is the response variable and it takes value 1 in case of fraud and 0 otherwise.
+It contains only numerical input variables which are the result of a PCA transformation. Unfortunately, due to confidentiality issues, the data for the original features and more background information about the data is not provided. Features V1, V2, … V28 are the principal components obtained with PCA, the only features which have not been transformed with PCA are 'Time' and 'Amount'. Feature 'Time' contains the seconds elapsed between each transaction and the first transaction in the dataset. The feature 'Amount' is the transaction Amount, this feature can be used for example-dependant cost-sensitive learning. Feature 'Class' is the response variable and it takes value 1 in case of fraud and 0 otherwise.
 
 ## Data Exploration
 
@@ -57,6 +57,7 @@ The model is trained again on these parameters and we use the validation and tes
 
 ![image](https://user-images.githubusercontent.com/41315903/173409326-38a01000-3359-4512-9e58-57c2a6fb67b0.png)
 
+The precision-recall curve is used to show the tradeoff between precision and recall for different threshold. If the area under under the curve value is high, that implies that the model showcases high recall and precision. High precision relates to a low false positive rate and high recall relates to a low false negative rate. 
 Below is the Precision-Recall Curve for Logistic Regression:
 
 ![image](https://user-images.githubusercontent.com/41315903/173441420-788d8ba4-f2c5-4ce0-9e77-1eef1f826667.png)
@@ -66,7 +67,11 @@ Below is the Precision-Recall Curve for Logistic Regression:
 
 ## XGBoost Classifier
 
-To increase our average precision-recall score (Area Under the Precision-Recall Curve), XGBoost is considered for better predictive capability. We followed the following steps in this process:
+To increase our average precision-recall score (Area Under the Precision-Recall Curve), XGBoost is considered for better predictive capability.
+
+XGBoost (Extreme Gradient Boosting) is a gradient boosting decision tree based ensemble learning model. Gradient boosting is a supervised learning algorithm, which attempts to accurately predict a target variable by combining the estimates of a set of simpler, weaker models.
+
+We followed the following steps in this process:
 - **Hyperparameter tuning using Hyperopt:**  Hyperopt is a powerful Python library that can optimize a function's value over complex spaces of input i.e., it can optimize a model's accuracy over a space of hyperparameters. It’s a Bayesian optimizer, meaning it is not merely randomly searching or searching a grid, but intelligently learning which combinations of values work well as it goes, and focusing the search there. It is supported by a SMBO methodology adapted to work with different algorithms such as: Tree of Parzen Estimators (TPE), Adaptive Tree of Parzen Estimators (ATPE) and Gaussian Processes (GP).
 
 - **Training the Model:** The model is trained with the optimal parameters we got using Hyperopt for our XGBoost classifier.

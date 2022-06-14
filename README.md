@@ -73,6 +73,11 @@ XGBoost (Extreme Gradient Boosting) is a gradient boosting decision tree based e
 
 We followed the following steps in this process:
 - **Hyperparameter tuning using Hyperopt:**  Hyperopt is a powerful Python library that can optimize a function's value over complex spaces of input i.e., it can optimize a model's accuracy over a space of hyperparameters. It’s a Bayesian optimizer, meaning it is not merely randomly searching or searching a grid, but intelligently learning which combinations of values work well as it goes, and focusing the search there. It is supported by a SMBO methodology adapted to work with different algorithms such as: Tree of Parzen Estimators (TPE), Adaptive Tree of Parzen Estimators (ATPE) and Gaussian Processes (GP).
+  The hyperparameters we tuned are - 
+  1) colsample_bytree: Subsampling of columns before creating each tree
+  2) subsample: Subsampling rows before creating each tree
+  3) max_depth: Explicitly controls the depth of the individual trees
+  4) min_child_weight: Implicitly controls the complexity of each tree by requiring the minimum number of instances (measured by hessian within XGBoost) to be greater than a certain value for further partitioning to occur. 
 
 - **Training the Model:** The model is trained with the optimal parameters we got using Hyperopt for our XGBoost classifier.
 
